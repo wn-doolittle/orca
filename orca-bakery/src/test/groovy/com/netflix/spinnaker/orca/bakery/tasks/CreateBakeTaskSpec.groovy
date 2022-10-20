@@ -118,7 +118,7 @@ class CreateBakeTaskSpec extends Specification {
 
   @Shared
   def buildInfo = new JenkinsBuildInfo(
-    "name", 0, "http://jenkins", "SUCCESS",
+    "name", null, "http://jenkins", "SUCCESS",
     [
       new JenkinsArtifact("hodor_1.1_all.deb", "."),
       new JenkinsArtifact("hodor-1.1.noarch.rpm", "."),
@@ -128,7 +128,7 @@ class CreateBakeTaskSpec extends Specification {
 
   @Shared
   def buildInfoWithUrl = new JenkinsBuildInfo(
-    "name", 0, "http://spinnaker.builds.test.netflix.net/job/SPINNAKER-package-echo/69/", "SUCCESS",
+    "name", null, "http://spinnaker.builds.test.netflix.net/job/SPINNAKER-package-echo/69/", "SUCCESS",
     [
       new JenkinsArtifact("hodor_1.1_all.deb", "."),
       new JenkinsArtifact("hodor-1.1.noarch.rpm", "."),
@@ -138,7 +138,7 @@ class CreateBakeTaskSpec extends Specification {
 
   @Shared
   def buildInfoWithFoldersUrl = new JenkinsBuildInfo(
-    "name", 0, "http://spinnaker.builds.test.netflix.net/job/folder/job/SPINNAKER-package-echo/69/", "SUCCESS",
+    "name", null, "http://spinnaker.builds.test.netflix.net/job/folder/job/SPINNAKER-package-echo/69/", "SUCCESS",
     [
       new JenkinsArtifact("hodor_1.1_all.deb", "."),
       new JenkinsArtifact("hodor-1.1.noarch.rpm", "."),
@@ -148,7 +148,7 @@ class CreateBakeTaskSpec extends Specification {
 
   @Shared
   def buildInfoWithUrlAndSCM = new JenkinsBuildInfo(
-    "name", 0, "http://spinnaker.builds.test.netflix.net/job/SPINNAKER-package-echo/69/", "SUCCESS",
+    "name", null, "http://spinnaker.builds.test.netflix.net/job/SPINNAKER-package-echo/69/", "SUCCESS",
     [
       new JenkinsArtifact("hodor_1.1_all.deb", "."),
       new JenkinsArtifact("hodor-1.1.noarch.rpm", "."),
@@ -159,7 +159,7 @@ class CreateBakeTaskSpec extends Specification {
 
   @Shared
   def buildInfoWithUrlAndTwoSCMs = new JenkinsBuildInfo(
-    "name", 0, "http://spinnaker.builds.test.netflix.net/job/SPINNAKER-package-echo/69/", "SUCCESS",
+    "name", null, "http://spinnaker.builds.test.netflix.net/job/SPINNAKER-package-echo/69/", "SUCCESS",
     [
       new JenkinsArtifact("hodor_1.1_all.deb", "."),
       new JenkinsArtifact("hodor-1.1.noarch.rpm", "."),
@@ -173,7 +173,7 @@ class CreateBakeTaskSpec extends Specification {
 
   @Shared
   def buildInfoWithUrlAndMasterAndDevelopSCMs = new JenkinsBuildInfo(
-    "name", 0, "http://spinnaker.builds.test.netflix.net/job/SPINNAKER-package-echo/69/", "SUCCESS",
+    "name", null, "http://spinnaker.builds.test.netflix.net/job/SPINNAKER-package-echo/69/", "SUCCESS",
     [
       new JenkinsArtifact("hodor_1.1_all.deb", "."),
       new JenkinsArtifact("hodor-1.1.noarch.rpm", "."),
@@ -187,7 +187,7 @@ class CreateBakeTaskSpec extends Specification {
 
   @Shared
   def buildInfoNoMatch = new JenkinsBuildInfo(
-    "name", 0, "http://jenkins", "SUCCESS",
+    "name", null, "http://jenkins", "SUCCESS",
     [
       new JenkinsArtifact("hodornodor_1.1_all.deb", "."),
       new JenkinsArtifact("hodor-1.1.noarch.rpm", "."),
@@ -340,7 +340,7 @@ class CreateBakeTaskSpec extends Specification {
     given:
     bakeConfig.buildInfo = contextInfo
     def pipelineWithTrigger = pipeline {
-      trigger = new JenkinsTrigger("master", "job", 1, null)
+      trigger = new JenkinsTrigger("master", "job", '1', null)
       if (triggerInfo != null) {
         trigger.buildInfo = triggerInfo
       }
@@ -393,7 +393,7 @@ class CreateBakeTaskSpec extends Specification {
     given:
     bakeConfig.buildInfo = contextInfo
     def pipelineWithTrigger = pipeline {
-      trigger = new JenkinsTrigger("master", "job", 1, null)
+      trigger = new JenkinsTrigger("master", "job", '1', null)
       if (triggerInfo != null) {
         trigger.buildInfo = triggerInfo
       }
@@ -444,7 +444,7 @@ class CreateBakeTaskSpec extends Specification {
       ]
     ]
     def pipelineWithTrigger = pipeline {
-      trigger = new JenkinsTrigger("master", "job", 1, null)
+      trigger = new JenkinsTrigger("master", "job", '1', null)
       trigger.buildInfo = buildInfo
       stage {
         type = "bake"
@@ -537,7 +537,7 @@ class CreateBakeTaskSpec extends Specification {
     given:
     bakeConfig.buildInfo = contextInfo
     def pipelineWithTrigger = pipeline {
-      trigger = new JenkinsTrigger("master", "job", 1, null)
+      trigger = new JenkinsTrigger("master", "job", '1', null)
       if (triggerInfo != null) {
         trigger.buildInfo = triggerInfo
       }
@@ -588,7 +588,7 @@ class CreateBakeTaskSpec extends Specification {
     given:
     bakeConfig.buildInfo = contextInfo
     def pipelineWithTrigger = pipeline {
-      trigger = new JenkinsTrigger("master", "job", 1, null)
+      trigger = new JenkinsTrigger("master", "job", '1', null)
       if (triggerInfo != null) {
         trigger.buildInfo = triggerInfo
       }
@@ -637,7 +637,7 @@ class CreateBakeTaskSpec extends Specification {
     given:
     bakeConfig.buildInfo = contextInfo
     def pipelineWithTrigger = pipeline {
-      trigger = new JenkinsTrigger("master", "job", 1, null)
+      trigger = new JenkinsTrigger("master", "job", '1', null)
       if (triggerInfo != null) {
         trigger.buildInfo = triggerInfo
       }
@@ -686,7 +686,7 @@ class CreateBakeTaskSpec extends Specification {
     given:
     bakeConfig.buildInfo = mapper.convertValue(contextInfo, Map)
     def pipelineWithTrigger = pipeline {
-      trigger = new JenkinsTrigger("master", "job", 1, null)
+      trigger = new JenkinsTrigger("master", "job", '1', null)
       if (triggerInfo != null) {
         trigger.buildInfo = triggerInfo
       }
@@ -735,7 +735,7 @@ class CreateBakeTaskSpec extends Specification {
     given:
     bakeConfig.buildInfo = contextInfo
     def pipelineWithTrigger = pipeline {
-      trigger = new JenkinsTrigger("master", "job", 1, null)
+      trigger = new JenkinsTrigger("master", "job", '1', null)
       if (triggerInfo != null) {
         trigger.buildInfo = triggerInfo
       }
@@ -786,7 +786,7 @@ class CreateBakeTaskSpec extends Specification {
     given:
     bakeConfig.buildInfo = contextInfo
     def pipelineWithTrigger = pipeline {
-      trigger = new JenkinsTrigger("master", "job", 1, null)
+      trigger = new JenkinsTrigger("master", "job", '1', null)
       if (triggerInfo != null) {
         trigger.buildInfo = triggerInfo
       }
@@ -840,7 +840,7 @@ class CreateBakeTaskSpec extends Specification {
     given:
     bakeConfig.buildInfo = contextInfo
     def pipelineWithTrigger = pipeline {
-      trigger = new JenkinsTrigger("master", "job", 1, null)
+      trigger = new JenkinsTrigger("master", "job", '1', null)
       if (triggerInfo != null) {
         trigger.buildInfo = triggerInfo
       }
@@ -894,7 +894,7 @@ class CreateBakeTaskSpec extends Specification {
     given:
     bakeConfig.buildInfo = contextInfo
     def pipelineWithTrigger = pipeline {
-      trigger = new JenkinsTrigger("master", "job", 1, null)
+      trigger = new JenkinsTrigger("master", "job", '1', null)
       if (triggerInfo != null) {
         trigger.buildInfo = triggerInfo
       }
@@ -1111,9 +1111,9 @@ class CreateBakeTaskSpec extends Specification {
 
     where:
     triggerConfig                                                 | queryParameter
-    [type: "jenkins", master: "master", job: "job", buildNumber: 1, rebake: true]  | "1"
-    [type: "jenkins", master: "master", job: "job", buildNumber: 1, rebake: false] | null
-    [type: "jenkins", master: "master", job: "job", buildNumber: 1]                | null
+    [type: "jenkins", master: "master", job: "job", buildNumber: '1', rebake: true]  | "1"
+    [type: "jenkins", master: "master", job: "job", buildNumber: '1', rebake: false] | null
+    [type: "jenkins", master: "master", job: "job", buildNumber: '1']                | null
   }
 
   def "properly resolves package artifacts"() {
